@@ -13,23 +13,23 @@
     'use strict';
     console.log('Youtube Anti-Adblock Killer by Axel Andaroth')
     const video = document.querySelector('video') // find the video player in page
-    let kill, click = false
+    let closeBtnClicked = false
     const interval = setInterval(() => { // lazy repeat (^:
-        if (kill) return console.log('master my work here is done');
         const dialogs = document.querySelectorAll('tp-yt-paper-dialog') || [] // find all dialogs
-        console.log('dialogs', dialogs)
         // find the anti-adblock one, use the expression you like:
         const antiAdBlockDialog = Array.from(dialogs).find((d) => (!!d.innerHTML.toLowerCase().match(/allow youtube ads|autoriser youtube ads/g)))
-        if (!!antiAdBlockDialog) {
-            console.log('antiAdBlockDialog', antiAdBlockDialog)
+        if (!!antiAdBlockDialog) { // there is an anti-adblock dialog
             antiAdBlockDialog.style.display = "none" // hide the popup
             if (!!video && video.paused) video.play() // auto play if was paused
             const closeBtn = antiAdBlockDialog.querySelector('div.yt-spec-touch-feedback-shape__fill') // find close button
             if (closeBtn) {
-                console.log('try close popup', closeBtn)
+                console.log('try close popup with btn:', closeBtn)
                 closeBtn.click() // press the close button
-                click = true
+                closeBtnClicked = true
             } // endof close
-        } else if (click) kill = true; // if no dialog + closeBtn clicked, then its killed
+        } else if (closeBtnClicked) {
+            console.log('MASTER I AM HERE TO SERVE YOU')
+            clearInterval(interval)
+        }; // if no dialog + closeBtnClicked, then its killed
     },1000) // endof interval
 })();
