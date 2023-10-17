@@ -22,7 +22,7 @@
         if (!!antiAdBlockDialog) {
             antiAdBlockDialog.style.display = "none" // hide the popup
             const video = document.querySelector('video')
-            if (video.paused) video.click() // auto play if was paused
+            if (video.paused) video.play() // auto play if was paused
             const close = antiAdBlockDialog.querySelector('div.yt-spec-touch-feedback-shape__fill') // find close button
             if (close) {
                 console.log('try close popup', close)
