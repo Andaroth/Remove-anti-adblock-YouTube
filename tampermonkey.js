@@ -18,7 +18,8 @@
         if (popup) {
 
             const dialog = document.querySelector('tp-yt-paper-dialog') // find dialog
-            if (dialog) {
+            const isAntiAdBlockDialog = (dialog && !!dialog.innerHTML.toLowerCase().includes('blockers')) || false
+            if (isAntiAdBlockDialog) {
                 const close = document.querySelector('div.yt-spec-touch-feedback-shape__fill') // find close button
                 if (close) {
                     console.log('close popup', close)
