@@ -21,12 +21,14 @@
         )) // endof find()
         if (!!antiAdBlockDialog) {
             antiAdBlockDialog.style.display = "none" // hide the popup
+            const video = document.querySelector('video')
+            if (video.paused) video.click() // auto play if was paused
             const close = antiAdBlockDialog.querySelector('div.yt-spec-touch-feedback-shape__fill') // find close button
             if (close) {
                 console.log('try close popup', close)
                 close.click() // press the close button
             } // endof close
-            if (video.paused) document.querySelector('video').click() // auto play if was paused
+
         } // endof antiAdBlockDialog
     },1000) // endof interval
 })();
