@@ -14,9 +14,9 @@
     console.log('Youtube Anti-Adblock Killer by Axel Andaroth')
     const video = document.querySelector('video')
     const interval = setInterval(() => { // lazy repeat (^:
-        const dialogs = document.querySelectorAll('tp-yt-paper-dialog') // find all dialogs
+        const dialogs = document.querySelectorAll('tp-yt-paper-dialog') || [] // find all dialogs
         // find the anti-adblock one, use the expression you like:
-        const antiAdBlockDialog = dialogs.find((d) => (!!d.innerHTML.toLowerCase().match(/block|publ|bloqu/g)))
+        const antiAdBlockDialog = Array.from(dialogs).find((d) => (!!d.innerHTML.toLowerCase().match(/block|publ|bloqu/g)))
         if (!!antiAdBlockDialog) {
             antiAdBlockDialog.style.display = "none" // hide the popup
             if (!!video && video.paused) video.play() // auto play if was paused
