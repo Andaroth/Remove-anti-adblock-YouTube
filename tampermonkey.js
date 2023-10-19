@@ -26,7 +26,10 @@
             if (!video) video = document.querySelector('video') // find the video player in page
             video.play() // force play
             if (!closeBtn) closeBtn = antiAdBlockDialog.querySelector('div.yt-spec-touch-feedback-shape__fill') // find close button
-            else closeBtn.click() // press the close button to prevent popup come back
+            else {
+                closeBtn.click() // press the close button to prevent popup come back
+                antiAdBlockDialog.remove()
+            }
         }
     },1000) // endof interval
 })();
