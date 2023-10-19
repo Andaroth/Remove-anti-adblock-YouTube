@@ -1,4 +1,4 @@
-# youtube-anti-adblock-killer
+# Remove-anti-adblock-YouTube
 
 YouTube released an update where they will automatically open a warning pop-up if you are using an adblocker. 
 This snipper closes the anti-adblock popup and resume the video.
