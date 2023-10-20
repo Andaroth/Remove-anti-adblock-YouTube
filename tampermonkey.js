@@ -20,7 +20,10 @@
         // find the anti-adblock one, use the expression you like:
         const antiAdBlockDialog = Array.from(dialogs).find((d) => (
             !!d.innerHTML.toLowerCase().includes("bloqueur de publicité"))
+            !!d.innerHTML.toLowerCase().includes("autoriser youtube ads"))
             || !!d.innerHTML.toLowerCase().includes("blockers are not allowed"))
+            || !!d.innerHTML.toLowerCase().includes("blockers violate"))
+            || !!d.innerHTML.toLowerCase().includes("allow youtube ads"))
         )
         if (!!antiAdBlockDialog) { // there is an anti-adblock dialog
             antiAdBlockDialog.style.display = "none" // hide the popup
