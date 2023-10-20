@@ -18,7 +18,10 @@
         const dialogs = document.querySelectorAll('tp-yt-paper-dialog') || [] // find all dialogs
         if (Array.from(dialogs).length) console.log('dialogs opened:',dialogs)
         // find the anti-adblock one, use the expression you like:
-        const antiAdBlockDialog = Array.from(dialogs).find((d) => (!!d.innerHTML.toLowerCase().includes("bloqueur de publicité")))
+        const antiAdBlockDialog = Array.from(dialogs).find((d) => (
+            !!d.innerHTML.toLowerCase().includes("bloqueur de publicité"))
+            || !!d.innerHTML.toLowerCase().includes("blockers are not allowed"))
+        )
         if (!!antiAdBlockDialog) { // there is an anti-adblock dialog
             antiAdBlockDialog.style.display = "none" // hide the popup
             if (!overlay) overlay = document.querySelector('tp-yt-iron-overlay-backdrop') // get overlay
