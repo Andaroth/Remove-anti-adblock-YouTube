@@ -19,12 +19,12 @@
         if (Array.from(dialogs).length) console.log('dialogs opened:',dialogs)
         // find the anti-adblock one, use the expression you like:
         const antiAdBlockDialog = Array.from(dialogs).find((d) => (
-            !!d.innerHTML.toLowerCase().includes("bloqueur de publicité"))
-            || !!d.innerHTML.toLowerCase().includes("autoriser youtube ads"))
-            || !!d.innerHTML.toLowerCase().includes("blockers are not allowed"))
-            || !!d.innerHTML.toLowerCase().includes("blockers violate"))
-            || !!d.innerHTML.toLowerCase().includes("allow youtube ads"))
-        )
+            !!d.innerHTML.toLowerCase().includes("bloqueur de publicité")
+            || !!d.innerHTML.toLowerCase().includes("autoriser youtube ads")
+            || !!d.innerHTML.toLowerCase().includes("blockers are not allowed")
+            || !!d.innerHTML.toLowerCase().includes("blockers violate")
+            || !!d.innerHTML.toLowerCase().includes("allow youtube ads")
+        )) // endof find
         if (!!antiAdBlockDialog) { // there is an anti-adblock dialog
             antiAdBlockDialog.style.display = "none" // hide the popup
             if (!overlay) overlay = document.querySelector('tp-yt-iron-overlay-backdrop') // get overlay
@@ -36,11 +36,11 @@
                 closeBtn.click() // press the close button to prevent popup come back
                 antiAdBlockDialog.remove()
             }
-        }
+        } // endof adblock dialog
     },1000) // endof interval
 })();
 
-/* OUR POLICY
+/* COMMUNICATION
 We don't want to pay a Premium because
 we will still see sponsored contents because
 YT doesn't compensate their creators sufficiently
