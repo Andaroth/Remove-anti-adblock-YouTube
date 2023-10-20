@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Youtube Anti-Adblock Killer
 // @namespace    https://anda.ninja/
-// @version      1.0.0
+// @version      1.0.1
 // @description  Remove the anti-adblocker popup on Youtube
 // @author       Axel Andaroth
 // @match        https://www.youtube.com/*
