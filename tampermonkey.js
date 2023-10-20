@@ -39,3 +39,9 @@
         }
     },1000) // endof interval
 })();
+
+/* OUR POLICY
+We don't want to pay a Premium because
+we will still see sponsored contents because
+YT doesn't compensate their creators sufficiently
+THANK YOU */
