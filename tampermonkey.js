@@ -10,35 +10,38 @@
 // ==/UserScript==
 
 (function() {
-    'use strict';
-    console.log('Youtube Anti-Adblock Killer by Axel Andaroth')
-    let video = document.querySelector('video') // find the video player in page
-    let overlay, closeBtn = null // DOM
-    const interval = setInterval(() => { // lazy repeat (^:
-        const dialogs = document.querySelectorAll('tp-yt-paper-dialog') || [] // find all dialogs
-        if (Array.from(dialogs).length) console.log('dialogs opened:',dialogs)
-        // find the anti-adblock one, use the expression you like:
-        const antiAdBlockDialog = Array.from(dialogs).find((d) => (
-            !!d.innerHTML.toLowerCase().includes("bloqueur de publicité")
-            || !!d.innerHTML.toLowerCase().includes("autoriser youtube ads")
-            || !!d.innerHTML.toLowerCase().includes("blockers are not allowed")
-            || !!d.innerHTML.toLowerCase().includes("blockers violate")
-            || !!d.innerHTML.toLowerCase().includes("allow youtube ads")
-        )) // endof find
-        if (!!antiAdBlockDialog) { // there is an anti-adblock dialog
-            antiAdBlockDialog.style.display = "none" // hide the popup
-            if (!overlay) overlay = document.querySelector('tp-yt-iron-overlay-backdrop') // get overlay
-            else overlay.style.display = "none" // hide overlay
-            if (!video) video = document.querySelector('video') // find the video player in page
-            video.play() // force play
-            if (!closeBtn) closeBtn = antiAdBlockDialog.querySelector('div.yt-spec-touch-feedback-shape__fill') // find close button
+  'use strict';
+  console.log('Youtube Anti-Adblock Killer by Axel Andaroth')
+  let video = document.querySelector('video') // find the video player in page
+  let overlay = document.querySelector('tp-yt-iron-overlay-backdrop'); // get overlay
+  let closeBtn = null // DOM
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList') {
+        const dialogs = mutation.target.querySelectorAll('tp-yt-paper-dialog'); // find all dialogs
+        dialogs.forEach((dialog) => {
+          const content = dialog.innerHTML.toLowerCase();
+          const antiAdBlockPhrases = /bloqueur de publicité|autoriser youtube ads|blockers are not allowed|blockers violate|allow youtube ads/;
+          if (antiAdBlockPhrases.test(content)) { // there is an anti-adblock dialog
+            dialog.style.display = "none"; // hide the popup
+            if (overlay) overlay.style.display = "none"; // hide overlay
+            if (video) video.play(); // force play
+            if (!closeBtn) closeBtn = dialog.querySelector('div.yt-spec-touch-feedback-shape__fill'); // find close button
             else {
-                closeBtn.click() // press the close button to prevent popup come back
-                antiAdBlockDialog.remove()
+              closeBtn.click(); // press the close button to prevent popup come back
+              dialog.remove();
             }
-        } // endof adblock dialog
-    },1000) // endof interval
+          } // endof adblock dialog
+        });
+      }
+    });
+  });
+
+  const dialogParent = document.querySelector('body'); // assuming dialogs are direct children of body
+  observer.observe(dialogParent, { childList: true, subtree: true });
 })();
+
 
 /* COMMUNICATION
 We don't want to pay a Premium because
