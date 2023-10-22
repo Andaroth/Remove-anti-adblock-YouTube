@@ -1,3 +1,5 @@
+![Remove blocker](https://i9.ytimg.com/vi_webp/DufgQ5I_emU/mqdefault.webp?v=6532ec84&sqp=CIi706kG&rs=AOn4CLC-lKKkLBr2m4Sk8sQO7N0YomCFUQ "Remove blocker")
+
 # Remove-anti-adblock-YouTube
 
 YouTube released an update where they will automatically open a warning pop-up if you are using an adblocker. 
