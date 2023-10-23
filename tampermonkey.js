@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Youtube Anti-Adblock Killer
 // @namespace    https://anda.ninja/
-// @version      1.0.1
+// @version      1.0.2
 // @description  Remove the anti-adblocker popup on Youtube
 // @author       Axel Andaroth
 // @match        https://www.youtube.com/*
@@ -13,11 +13,15 @@
     'use strict';
     console.log('Youtube Anti-Adblock Killer by Axel Andaroth')
     let video = document.querySelector('video') // find the video player in page
-    let overlay, closeBtn = null // DOM
+    let overlay, closeBtn, noRenderer, playerContainerOuter = null // DOM
     const interval = setInterval(() => { // lazy repeat (^:
         const dialogs = document.querySelectorAll('tp-yt-paper-dialog') || [] // find all dialogs
         if (Array.from(dialogs).length) console.log('dialogs opened:',dialogs)
         // find the anti-adblock one, use the expression you like:
+        if (!playerContainerOuter) playerContainerOuter = document.querySelector('div.player-container-outer') // find outer player
+        playerContainerOuter.style.visibility = "initial" // force visible player
+        if (!noRenderer) noRenderer = document.querySelector('yt-playability-error-supported-renderers') // find player warning
+        noRenderer.style.display = "none" // hide player warning
         const antiAdBlockDialog = Array.from(dialogs).find((d) => (
             !!d.innerHTML.toLowerCase().includes("bloqueur de publicité")
             || !!d.innerHTML.toLowerCase().includes("autoriser youtube ads")
