@@ -18,7 +18,7 @@
 
     const forcePlay = () => {
         if (!video) video = document.querySelector('video') // find the video player in page
-        if (video) video.play() // force play
+        video.play() // force play
     }
 
     const forceSkipAdScreen = () => {
